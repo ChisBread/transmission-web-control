@@ -35,7 +35,7 @@
 	<script type="text/javascript" src="tr-web-control/script/other/ua-parser.min.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20201001"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20201001"></script>
+	<script type="text/javascript" src="tr-web-control/script/system.js"></script>
 	<script type="text/javascript" src="tr-web-control/config.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/plugin.js?v=20200914"></script>
 	<script type="text/javascript">
@@ -51,24 +51,29 @@
 		<div id="m_top" data-options="region:'north'">
 			<div class="easyui-layout" data-options="fit:true">
 				<div id="m_title_layout" data-options="region:'center'" border="0">
-					<img id="logo" src="tr-web-control/logo.png" /><span id="m_title" style="padding:10px;display:none;"></span>
-					<span id="area-update-infos" style="display:none;padding: 13px;position: absolute;background-color: #ffe48c;">
+					<img id="logo" src="tr-web-control/logo.png" /><span id="m_title"
+						style="padding:10px;display:none;"></span>
+					<span id="area-update-infos"
+						style="display:none;padding: 13px;position: absolute;background-color: #ffe48c;">
 						<span id="msg-updateInfos" style="color:#ff3232;"></span>
 						<a id="button-download-update" href="" class="easyui-linkbutton"
-							data-options="iconCls:'iconfont tr-icon-help'"><span system-lang="public['text-have-update']"></span></a>
+							data-options="iconCls:'iconfont tr-icon-help'"><span
+								system-lang="public['text-have-update']"></span></a>
 					</span>
 					<div style="float:right;padding:13px;">
 						<span>Theme: </span>
 						<!-- 切换主题 -->
 						<select id="select-themes" style="width:120px;height:25px"></select>
 						<!-- 切换到移动版 -->
-						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton"
-							data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"><span
+						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';"
+							class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true"
+							system-tip-lang="toolbar.tip['ui-mobile']"><span
 								system-lang="toolbar['ui-mobile']"></span></a>
 						<span class="button-split">|</span>
 						<!-- 切换到原版 -->
 						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton"
-							data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><span
+							data-options="iconCls:'icon-transmission',plain:true"
+							system-tip-lang="toolbar.tip['ui-original']"><span
 								system-lang="toolbar['ui-original']"></span></a>
 						<span class="button-split">|</span>
 						<!-- 关于 -->
@@ -77,7 +82,8 @@
 							class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true"
 							system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>
 					</div>
-					<div style="float:right;display:none;">Language：<select id="lang" value="" style="width:200px;"></select>
+					<div style="float:right;display:none;">Language：<select id="lang" value=""
+							style="width:200px;"></select>
 					</div>
 				</div>
 				<!-- 工具栏 -->
@@ -127,12 +133,12 @@
 						data-options="iconCls:'iconfont tr-icon-folder-change',plain:true,disabled:true"></a>
 					<!-- 设置上传下载限制 -->
 					<a id="toolbar_changeSpeedLimit" href="javascript:void(0);" class="easyui-linkbutton"
-					data-options="iconCls:'iconfont tr-icon-speedlimit',plain:true,disabled:true"></a>
-					
+						data-options="iconCls:'iconfont tr-icon-speedlimit',plain:true,disabled:true"></a>
+
 					<!-- 复制下载目录 -->
 					<a id="toolbar_copyPath" href="javascript:void(0);" class="easyui-linkbutton"
-						data-options="iconCls:'iconfont tr-icon-clippy',plain:true,disabled:true" data-clipboard-action="copy"
-						data-clipboard-target="#clipboard-source"></a>
+						data-options="iconCls:'iconfont tr-icon-clippy',plain:true,disabled:true"
+						data-clipboard-action="copy" data-clipboard-target="#clipboard-source"></a>
 					<span class="button-split">|</span>
 					<!-- 队列 -->
 					<a id="toolbar_queue" href="#" class="easyui-menubutton"
@@ -147,9 +153,15 @@
 						data-options="iconCls:'iconfont tr-icon-pause-all',plain:true,disabled:true"></a>
 					<span class="button-split">|</span>
 					<label id="toolbar_label_reload_time"></label>
-					<input id="toolbar_reload_time" style="width:50px;text-align:center;" class="easyui-numberspinner" />
+					<input id="toolbar_reload_time" style="width:50px;text-align:center;"
+						class="easyui-numberspinner" />
 					<label id="toolbar_label_reload_time_unit"></label>
-					<a id="toolbar_autoreload" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true"></a>
+					<a id="toolbar_autoreload" href="javascript:void(0);" class="easyui-linkbutton"
+						data-options="plain:true"></a>
+					<!-- 快检 -->
+					<span class="button-split">|</span>
+					<a id="toolbar_fasthash" href="javascript:void(0);" class="easyui-linkbutton"
+						data-options="plain:true"></a>
 					<span id="toolbar_right_area" style="padding:1px;position: absolute;right: 2px;">
 						<!-- 搜索 -->
 						<input id="toolbar_search" type="text" class="easyui-searchbox" style="width:200px;" />
@@ -160,7 +172,8 @@
 		<div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
 			<div id="layout_left" class="easyui-layout" data-options="fit:true">
 				<div id="m_left"
-					data-options="region:'center',border:0,onResize:function(w,h){system.layoutResize('nav', {width:w});}"></div>
+					data-options="region:'center',border:0,onResize:function(w,h){system.layoutResize('nav', {width:w});}">
+				</div>
 				<div id="m_status" title="status" data-options="region:'south',split:true,border:0,collapsed:true">
 					<span id="status_text"></span>
 					<a id="button-cancel-checked" class="easyui-linkbutton"
@@ -183,7 +196,8 @@
 			<span id="status_title_downloadspeed" class="iconlabel icon-down"></span>&nbsp;<span
 				id="status_downloadspeed"></span>
 			<span class="button-split">|</span>
-			<span id="status_title_uploadspeed" class="iconlabel icon-up"></span>&nbsp;<span id="status_uploadspeed"></span>
+			<span id="status_title_uploadspeed" class="iconlabel icon-up"></span>&nbsp;<span
+				id="status_uploadspeed"></span>
 			<span class="button-split">|</span>
 			<span id="status_freespace"></span><span id="status_version" style="float:right;"></span>
 		</div>
@@ -195,11 +209,15 @@
 	<!-- 队列子菜单 -->
 	<div id="menu-queue" style="width:150px;">
 		<div id="menu-queue-move-top" data-options="iconCls:'iconfont tr-icon-top'"
-			onclick="system.changeSelectedTorrentStatus('',null,'queue-move-top');" system-tip-lang="menus.queue['move-top']">
-			<span system-lang="menus.queue['move-top']"></span></div>
+			onclick="system.changeSelectedTorrentStatus('',null,'queue-move-top');"
+			system-tip-lang="menus.queue['move-top']">
+			<span system-lang="menus.queue['move-top']"></span>
+		</div>
 		<div id="menu-queue-move-up" data-options="iconCls:'iconfont tr-icon-up'"
-			onclick="system.changeSelectedTorrentStatus('',null,'queue-move-up');" system-tip-lang="menus.queue['move-up']">
-			<span system-lang="menus.queue['move-up']"></span></div>
+			onclick="system.changeSelectedTorrentStatus('',null,'queue-move-up');"
+			system-tip-lang="menus.queue['move-up']">
+			<span system-lang="menus.queue['move-up']"></span>
+		</div>
 		<div id="menu-queue-move-down" data-options="iconCls:'iconfont tr-icon-down'"
 			onclick="system.changeSelectedTorrentStatus('',null,'queue-move-down');"
 			system-tip-lang="menus.queue['move-down']"><span system-lang="menus.queue['move-down']"></span></div>
@@ -213,8 +231,10 @@
 			system-tip-lang="toolbar.tip['tracker-replace']" onclick="system.plugin.exec('replace-tracker');"><span
 				system-lang="toolbar['tracker-replace']"></span></div>
 		<div id="menu-plugin-auto-match-data-folder" data-options="iconCls:'iconfont tr-icon-auto-match'"
-			system-tip-lang="menus.plugin['auto-match-data-folder']" onclick="system.plugin.exec('auto-match-data-folder');">
-			<span system-lang="menus.plugin['auto-match-data-folder']"></span></div>
+			system-tip-lang="menus.plugin['auto-match-data-folder']"
+			onclick="system.plugin.exec('auto-match-data-folder');">
+			<span system-lang="menus.plugin['auto-match-data-folder']"></span>
+		</div>
 	</div>
 	<textarea id="clipboard-source"></textarea>
 </body>
