@@ -1262,28 +1262,25 @@ var system = {
 			}
 		});
 		transmission.exec({
-			method: "fasthash-set"
+			method: "fasthash-get"
 		}, function (data) {
 			console.log(JSON.stringify(data));
 			if (data.result == "success") {
-				transmission.exec({
-					method: "fasthash-set"
-				}, function (data) {
-					system.config.fastHash = data.arguments.is_fasthash
-				});
+				system.config.fastHash = data.arguments.is_fasthash;
 			}
 		});
+		system.saveConfig();
 		// Enable / disable fasthash
 		this.panel.toolbar.find("#toolbar_fasthash")
 			.linkbutton({
-				text: "TPE" + (system.config.fastHash ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
+				text: (system.config.fastHash ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
 				iconCls: (system.config.fastHash ? "icon-enabled" : "icon-disabled")
 			})
-			.attr("title", "TPE" + (system.config.fastHash ? system.lang.toolbar.tip["autoreload-disabled"] : system.lang.toolbar.tip["autoreload-enabled"]))
+			.attr("title", (system.config.fastHash ? system.lang.toolbar.tip["autoreload-disabled"] : system.lang.toolbar.tip["autoreload-enabled"]))
 			.click(function () {
 				system.config.fastHash = !system.config.fastHash;
 				transmission.exec({
-					method: "fasthash-set"
+					method: "fasthash-get"
 				}, function (data) {
 					console.log(JSON.stringify(data));
 					if (data.result == "success") {
@@ -1298,10 +1295,9 @@ var system = {
 				});
 				system.saveConfig();
 				$(this).linkbutton({
-					text: "TPE" + (system.config.fastHash ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
-					iconCls: "TPE" + (system.config.fastHash ? "icon-enabled" : "icon-disabled")
+					text: (system.config.fastHash ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
+					iconCls: (system.config.fastHash ? "icon-enabled" : "icon-disabled")
 				}).attr("title", (system.config.fastHash ? system.lang.toolbar.tip["autoreload-disabled"] : system.lang.toolbar.tip["autoreload-enabled"]));
-				location.reload();
 			});
 		// Enable / disable auto-refresh
 		this.panel.toolbar.find("#toolbar_autoreload")
@@ -1655,6 +1651,22 @@ var system = {
 	},
 	// Reload the server information
 	reloadSession: function (isinit) {
+		transmission.exec({
+			method: "fasthash-get"
+		}, function (data) {
+			console.log(JSON.stringify(data));
+			if (data.result == "success") {
+				system.config.fastHash = data.arguments.is_fasthash;
+			}
+		});
+		system.panel.toolbar.find("#toolbar_fasthash")
+			.linkbutton({
+				text: (system.config.fastHash ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
+				iconCls: (system.config.fastHash ? "icon-enabled" : "icon-disabled")
+			})
+			.attr("title", (system.config.fastHash ? system.lang.toolbar.tip["autoreload-disabled"] : system.lang.toolbar.tip["autoreload-enabled"]))
+
+		system.saveConfig();
 		transmission.getSession(function (result) {
 			system.serverConfig = result;
 			// Version Information
